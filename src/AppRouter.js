@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { ChakraProvider } from "@chakra-ui/react"
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,8 +11,9 @@ import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 
 export default function AppRouter() {
-    return (
+    return (  <ChakraProvider>
         <Router>
+            
             <Switch>
                 <Route exact path='/'>
                     <Home />
@@ -25,5 +26,6 @@ export default function AppRouter() {
                 </Route>
             </Switch>
         </Router>
+        </ChakraProvider>
     );
 }
