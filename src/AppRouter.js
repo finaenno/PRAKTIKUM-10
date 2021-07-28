@@ -13,7 +13,6 @@ import Dashboard from './pages/Dashboard'
 export default function AppRouter() {
     return (  <ChakraProvider>
         <Router>
-            
             <Switch>
                 <Route exact path='/'>
                     <Home />
