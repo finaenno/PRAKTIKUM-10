@@ -1,13 +1,11 @@
-import React from 'react';
-import UserInfo from '../components/UserInfo/UserInfo';
+import React from "react";
 
 function Home() {
-    return (
-        <div>
-            <h2>Home</h2>
-            <UserInfo avatarUrl="http://placekitten.com/g/200/200" name="Kevin" role="Teacher" />
-        </div>
-    );
+  return (
+    <div>
+      <h2>Home</h2>
+    </div>
+  );
 }
 
-export default Home
+export default Home;
