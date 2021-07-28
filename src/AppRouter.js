@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import DashboardLayoutRoute from "./Layout/DashboardLayoutRoute";
+import ManageClass from "./pages/ManageClass";
 
 export default function AppRouter() {
   return (
@@ -19,6 +20,7 @@ export default function AppRouter() {
             <Login />
           </Route>
           <DashboardLayoutRoute exact path="/dashboard" component={Dashboard} />
+          <DashboardLayoutRoute exact path="/class" component={ManageClass} />
         </Switch>
       </Router>
     </ChakraProvider>
