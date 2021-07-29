@@ -4,7 +4,7 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: ['react-app', 'react-app/jest'],
+  extends: ['react-app', 'react-app/jest', 'plugin:prettier/recommended'],
   plugins: [],
   // add your custom rules here
   rules: {

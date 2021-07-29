@@ -1,1 +1,1 @@
-export * as default from './UserInfo.jsx'
+export * as default from './UserInfo.jsx';
