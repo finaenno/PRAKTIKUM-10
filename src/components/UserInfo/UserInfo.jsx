@@ -1,15 +1,12 @@
-import { Avatar, Text, VStack, HStack } from "@chakra-ui/react";
+import { Avatar, Text, VStack, HStack } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
-export const UserInfo = ({ avatarUrl, name, role}) => {
+export const UserInfo = ({ avatarUrl, name, role }) => {
   return (
     <HStack>
-      <Avatar
-        size={"sm"}
-        src={avatarUrl}
-      />
+      <Avatar size={'sm'} src={avatarUrl} />
       <VStack
-        display={{ base: "none", md: "flex" }}
+        display={{ base: 'none', md: 'flex' }}
         alignItems="flex-start"
         spacing="1px"
         ml="2"
@@ -21,22 +18,21 @@ export const UserInfo = ({ avatarUrl, name, role}) => {
       </VStack>
     </HStack>
   );
-}
-
+};
 
 UserInfo.propTypes = {
   /**
-  * User avatar
-  */
+   * User avatar
+   */
   avatarUrl: PropTypes.string,
   /**
-  * User name
-  */
+   * User name
+   */
   name: PropTypes.string,
   /**
-  * User role
-  */
+   * User role
+   */
   role: PropTypes.string,
 };
 
-export default UserInfo
+export default UserInfo;
