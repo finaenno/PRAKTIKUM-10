@@ -52,3 +52,5 @@ export const Navbar = () => {
     </Flex>
   );
 };
+
+export default Navbar;
