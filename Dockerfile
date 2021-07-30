@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:14.17-alpine
 
 #Creating Directory and move the workdir
 RUN mkdir -p /home/app
