@@ -1,3 +1,4 @@
+import { lazy } from 'react';
 import {
   FiHome,
   FiBook,
@@ -7,10 +8,8 @@ import {
   FiClock,
   FiCalendar,
   FiPenTool,
+  FiStar,
 } from 'react-icons/fi';
-
-import ExampleListPage from './pages/ExampleListPage';
-import Home from './pages/Home';
 
 export const ProtectedRoutes = [
   {
@@ -18,9 +17,19 @@ export const ProtectedRoutes = [
     breadcrumb: 'Home',
     icon: FiHome,
     path: '/',
-    component: Home,
+    component: lazy(() => import('./pages/Home')),
     isShowNav: true,
     exact: true,
+  },
+  // Examples
+  {
+    name: 'Example',
+    breadcrumb: 'Example',
+    icon: FiStar,
+    path: '/example',
+    component: lazy(() => import('./modules/examples/ExampleContainer')),
+    isShowNav: true,
+    exact: false,
   },
   // Tim Manajemen Mapel
   {
@@ -28,7 +37,7 @@ export const ProtectedRoutes = [
     breadcrumb: 'Mata Pelajaran',
     icon: FiBook,
     path: '/mata-pelajaran',
-    component: ExampleListPage,
+    component: lazy(() => import('./modules/examples/ExampleContainer')),
     isShowNav: true,
     exact: false,
   },
@@ -37,7 +46,7 @@ export const ProtectedRoutes = [
     breadcrumb: 'Level',
     icon: FiList,
     path: '/level',
-    component: ExampleListPage,
+    component: lazy(() => import('./modules/examples/ExampleContainer')),
     isShowNav: true,
     exact: false,
   },
@@ -47,7 +56,7 @@ export const ProtectedRoutes = [
     breadcrumb: 'Kelas',
     icon: FiLayers,
     path: '/kelas',
-    component: ExampleListPage,
+    component: lazy(() => import('./modules/examples/ExampleContainer')),
     isShowNav: true,
     exact: false,
   },
@@ -56,7 +65,7 @@ export const ProtectedRoutes = [
     breadcrumb: 'Siswa',
     icon: FiUser,
     path: '/siswa',
-    component: ExampleListPage,
+    component: lazy(() => import('./modules/examples/ExampleContainer')),
     isShowNav: true,
     exact: false,
   },
@@ -65,7 +74,7 @@ export const ProtectedRoutes = [
     breadcrumb: 'Tahun Ajaran',
     icon: FiClock,
     path: '/tahun-ajaran',
-    component: ExampleListPage,
+    component: lazy(() => import('./modules/examples/ExampleContainer')),
     isShowNav: true,
     exact: false,
   },
@@ -74,8 +83,8 @@ export const ProtectedRoutes = [
     name: 'Jadwal Kelas',
     breadcrumb: 'Jadwal Kelas',
     icon: FiCalendar,
-    path: '/Jadwal-kelas',
-    component: ExampleListPage,
+    path: '/jadwal-kelas',
+    component: lazy(() => import('./modules/examples/ExampleContainer')),
     isShowNav: true,
     exact: false,
   },
@@ -84,8 +93,8 @@ export const ProtectedRoutes = [
     name: 'Jadwal Ujian',
     breadcrumb: 'Jadwal Ujian',
     icon: FiPenTool,
-    path: '/Jadwal-ujian',
-    component: ExampleListPage,
+    path: '/jadwal-ujian',
+    component: lazy(() => import('./modules/examples/ExampleContainer')),
     isShowNav: true,
     exact: false,
   },

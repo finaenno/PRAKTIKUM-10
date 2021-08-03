@@ -1,11 +1,15 @@
 import React from 'react';
-import { Heading, GridItem, Grid } from '@chakra-ui/react';
+import { Heading, GridItem, Grid, Text } from '@chakra-ui/react';
 
 function Dashboard() {
   return (
     <div>
-      <Heading as="h2" size="lg" mb="4" color="gray.800">
-        Dashboard
+      <Heading as="h2" size="lg" mb="4" mt="8" color="gray.800">
+        Hello{' '}
+        <Text color="blue.600" as={'span'}>
+          Kevin
+        </Text>
+        !
       </Heading>
       <Grid
         h="200px"
@@ -15,26 +19,26 @@ function Dashboard() {
       >
         <GridItem
           colSpan={1}
-          borderWidth="1px"
           borderRadius="lg"
           overflow="hidden"
+          boxShadow="sm"
           bg="white"
           p="4"
           height="160px"
         />
         <GridItem
           colSpan={1}
-          borderWidth="1px"
           borderRadius="lg"
           overflow="hidden"
+          boxShadow="sm"
           bg="white"
           p="4"
           height="160px"
         />
         <GridItem
           colSpan={1}
-          borderWidth="1px"
           borderRadius="lg"
+          boxShadow="sm"
           overflow="hidden"
           bg="white"
           p="4"
@@ -42,8 +46,8 @@ function Dashboard() {
         />
         <GridItem
           colSpan={2}
-          borderWidth="1px"
           borderRadius="lg"
+          boxShadow="sm"
           overflow="hidden"
           bg="white"
           p="4"
@@ -52,8 +56,8 @@ function Dashboard() {
         <GridItem
           rowSpan={2}
           colSpan={1}
-          borderWidth="1px"
           borderRadius="lg"
+          boxShadow="sm"
           overflow="hidden"
           bg="white"
           p="4"
@@ -61,8 +65,8 @@ function Dashboard() {
         />
         <GridItem
           colSpan={2}
-          borderWidth="1px"
           borderRadius="lg"
+          boxShadow="sm"
           overflow="hidden"
           bg="white"
           p="4"

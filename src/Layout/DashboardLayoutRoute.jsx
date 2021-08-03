@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import SidebarContent from '../components/SidebarContent';
 import BreadcrumbSection from '../components/BreadcrumbSection';
 import { SidebarProvider, useSidebar } from '../context/SidebarContext';
+import { withSuspense } from '../utils/withSuspense';
 
 const MainContent = ({ children }) => {
   const { isOpen } = useSidebar();
@@ -23,7 +24,7 @@ const MainContent = ({ children }) => {
     >
       <Navbar></Navbar>
       <BreadcrumbSection />
-      <Box m="4">{children}</Box>
+      <Box m="8">{children}</Box>
     </Box>
   );
 };
@@ -51,22 +52,14 @@ const DashboardLayoutRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => (
-        <DashboardLayout>
-          <Component {...props} />
-        </DashboardLayout>
+        <DashboardLayout>{withSuspense(Component)}</DashboardLayout>
       )}
     />
   );
 };
 
 DashboardLayoutRoute.propTypes = {
-  component: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.element),
-    PropTypes.element,
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.func,
-  ]),
+  component: PropTypes.any,
 };
 
 export default DashboardLayoutRoute;

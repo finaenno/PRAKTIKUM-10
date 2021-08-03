@@ -1,6 +1,7 @@
 import { Flex, Icon, Text } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 import { useSidebar } from '../../context/SidebarContext';
+import PropTypes from 'prop-types';
 
 const NavItem = ({ icon, children, to, isIcon, ...rest }) => {
   const { isOpen } = useSidebar();
@@ -39,6 +40,25 @@ const NavItem = ({ icon, children, to, isIcon, ...rest }) => {
       <Text isTruncated>{isIcon ? '' : children}</Text>
     </Flex>
   );
+};
+
+NavItem.propTypes = {
+  icon: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.element,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.func,
+  ]),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.element,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.func,
+  ]),
+  to: PropTypes.string,
+  isIcon: PropTypes.bool,
 };
 
 export default NavItem;

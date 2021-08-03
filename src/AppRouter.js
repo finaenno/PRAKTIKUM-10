@@ -20,7 +20,7 @@ export default function AppRouter() {
               {ProtectedRoutes.map((pr) => (
                 <DashboardLayoutRoute
                   key={pr.name}
-                  exact
+                  exact={pr.exact}
                   path={pr.path}
                   component={pr.component}
                 />

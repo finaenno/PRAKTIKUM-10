@@ -16,26 +16,33 @@ import {
   FiChevronsRight,
   FiChevronRight,
 } from 'react-icons/fi';
+import PropTypes from 'prop-types';
 
-export const Pagination = () => {
+export const Pagination = ({ page, setPage, perPage, setPerPage, total }) => {
+  const lastPage = Math.floor(total / perPage);
   return (
     <Flex alignItems="center">
       <Flex alignItems="center" flex="1">
         <Text flexShrink="0" mr={8} color="gray.600">
-          Ditampilkan{' '}
+          Halaman{' '}
           <Text fontWeight="bold" as="span">
-            10
+            {page}
           </Text>{' '}
           dari{' '}
           <Text fontWeight="bold" as="span">
-            0
+            {lastPage}
           </Text>
         </Text>
       </Flex>
       <Flex alignItems="center" mr={2}>
         <Text flexShrink="0">Show:</Text>{' '}
-        <Select ml={2} w={24} value={10} onChange={() => {}}>
-          {[10, 20, 30, 40, 50].map((pageSize) => (
+        <Select
+          ml={2}
+          w={24}
+          value={perPage}
+          onChange={(e) => setPerPage(Number(e.target.value))}
+        >
+          {[5, 10, 20, 30, 40, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
               {pageSize}
             </option>
@@ -49,9 +56,12 @@ export const Pagination = () => {
           mr={8}
           w={24}
           min={1}
-          max={10}
-          onChange={() => {}}
-          defaultValue={1}
+          max={lastPage}
+          onChange={(value) => {
+            setPage(Number(value));
+          }}
+          defaultValue={page}
+          value={page}
         >
           <NumberInputField />
           <NumberInputStepper>
@@ -63,16 +73,16 @@ export const Pagination = () => {
       <Flex mr={2}>
         <Tooltip label="First Page">
           <IconButton
-            onClick={() => {}}
-            isDisabled={false}
+            onClick={() => setPage(1)}
+            isDisabled={page === 1}
             icon={<FiChevronsLeft h={3} w={3} />}
             mr={4}
           />
         </Tooltip>
         <Tooltip label="Previous Page">
           <IconButton
-            onClick={() => {}}
-            isDisabled={false}
+            onClick={() => setPage(page - 1)}
+            isDisabled={page === 1}
             icon={<FiChevronLeft h={6} w={6} />}
           />
         </Tooltip>
@@ -80,15 +90,15 @@ export const Pagination = () => {
       <Flex>
         <Tooltip label="Next Page">
           <IconButton
-            onClick={() => {}}
-            isDisabled={false}
+            onClick={() => setPage(page + 1)}
+            isDisabled={page === lastPage}
             icon={<FiChevronRight h={6} w={6} />}
           />
         </Tooltip>
         <Tooltip label="Last Page">
           <IconButton
-            onClick={() => {}}
-            isDisabled={false}
+            onClick={() => setPage(lastPage)}
+            isDisabled={page === lastPage}
             icon={<FiChevronsRight h={3} w={3} />}
             ml={4}
           />
@@ -96,6 +106,14 @@ export const Pagination = () => {
       </Flex>
     </Flex>
   );
+};
+
+Pagination.propTypes = {
+  page: PropTypes.number,
+  setPage: PropTypes.func,
+  perPage: PropTypes.number,
+  setPerPage: PropTypes.func,
+  total: PropTypes.number,
 };
 
 export default Pagination;

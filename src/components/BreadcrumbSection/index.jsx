@@ -13,15 +13,7 @@ export default function BreadcrumbSection() {
   const breadcrumbs = useBreadcrumbs(ProtectedRoutes);
   if (breadcrumbs.length === 1) return <></>;
   return (
-    <Breadcrumb
-      m="4"
-      px="3"
-      py="2"
-      borderRadius="lg"
-      borderWidth="1px"
-      separator={<FiChevronRight />}
-      bg="white"
-    >
+    <Breadcrumb m="8" separator={<FiChevronRight />} fontSize="sm">
       {breadcrumbs.map(({ breadcrumb, match }, index) => {
         const isCurrent = index === breadcrumbs.length - 1;
         return (

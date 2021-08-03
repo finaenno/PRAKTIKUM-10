@@ -31,7 +31,7 @@ const SidebarContent = (props) => {
         )}
       </Flex>
       <Stack mx="4">
-        {ProtectedRoutes.map((link) => (
+        {ProtectedRoutes.filter((r) => r.isShowNav).map((link) => (
           <NavItem
             key={link.name}
             icon={link.icon}
