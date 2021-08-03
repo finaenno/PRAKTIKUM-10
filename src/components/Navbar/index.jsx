@@ -33,7 +33,7 @@ export const Navbar = () => {
           onClick={onToggle}
           variant="outline"
           aria-label="open menu"
-          icon={<FiChevronLeft />}
+          icon={<FiChevronLeft size="24px" />}
           transition="0.3 ease"
           transform={isOpen ? '' : 'rotate(180deg)'}
         />
