@@ -1,5 +1,5 @@
 import { Tr, Td, Tag } from '@chakra-ui/react';
-import { ExampleActionMenu } from './ExampleActionMenu';
+import ExampleActionMenu from './ExampleActionMenu';
 
 export const ExampleListItem = ({ text, num, status }) => {
   let scheme;

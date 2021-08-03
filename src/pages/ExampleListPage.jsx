@@ -80,7 +80,12 @@ function ExampleListPage() {
             </Thead>
             <Tbody>
               {exampleData.map(({ text, num, status }) => (
-                <ExampleListItem text={text} num={num} status={status} />
+                <ExampleListItem
+                  text={text}
+                  num={num}
+                  status={status}
+                  key={text}
+                />
               ))}
             </Tbody>
           </Table>

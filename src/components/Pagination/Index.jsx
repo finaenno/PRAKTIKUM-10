@@ -64,7 +64,7 @@ export const Pagination = () => {
         <Tooltip label="First Page">
           <IconButton
             onClick={() => {}}
-            isDisabled={() => {}}
+            isDisabled={false}
             icon={<FiChevronsLeft h={3} w={3} />}
             mr={4}
           />

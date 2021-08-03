@@ -3,7 +3,7 @@ import {
   Menu,
   MenuItem,
   MenuList,
-  useMenuButton,
+  MenuButton,
 } from '@chakra-ui/react';
 import {
   FiCopy,
@@ -16,7 +16,7 @@ import {
 export const ExampleActionMenu = () => {
   return (
     <Menu>
-      <useMenuButton
+      <MenuButton
         as={IconButton}
         aria-label="Options"
         icon={<FiMoreVertical />}
