@@ -41,7 +41,6 @@ function ExampleListPage() {
     callFetch();
   }, [get, page, perPage, response]);
 
-  throw new Error('Print error');
   return (
     <div>
       <Heading as="h2" size="lg" mb="4">
