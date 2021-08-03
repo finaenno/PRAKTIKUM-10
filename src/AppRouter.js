@@ -5,10 +5,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import DashboardLayoutRoute from './Layout/DashboardLayoutRoute';
 import { ProtectedRoutes } from './routes';
 import Login from './pages/Login';
+import theme from './theme';
 
 export default function AppRouter() {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Router>
         <Switch>
           <Route exact path="/login">

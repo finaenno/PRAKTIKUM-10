@@ -19,6 +19,15 @@ import {
   MenuList,
   MenuItem,
   IconButton,
+  Tooltip,
+  Select,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  Flex,
+  Text,
 } from '@chakra-ui/react';
 import React from 'react';
 import {
@@ -30,6 +39,11 @@ import {
   FiCopy,
   FiEdit,
   FiTrash,
+  FiChevronsLeft,
+  FiChevronLeft,
+  FiChevronsRight,
+  FiChevronRight,
+  FiFilter,
 } from 'react-icons/fi';
 
 const ActionMenu = () => {
@@ -73,8 +87,11 @@ function ExampleListPage() {
             <Input type="tel" placeholder="Find" />
           </InputGroup>
           <Spacer />
+          <Button leftIcon={<FiFilter />} variant="outline">
+            Filter
+          </Button>
           <Button leftIcon={<FiPrinter />} variant="outline">
-            Action
+            Print
           </Button>
           <Button leftIcon={<FiPlus />} variant="outline">
             Add
@@ -95,7 +112,9 @@ function ExampleListPage() {
                 <Td>Text</Td>
                 <Td isNumeric>25.4</Td>
                 <Td>
-                  <Tag colorScheme="green">SUKSES</Tag>
+                  <Tag colorScheme="green" size="sm">
+                    SUKSES
+                  </Tag>
                 </Td>
                 <Td>
                   <ActionMenu />
@@ -105,7 +124,9 @@ function ExampleListPage() {
                 <Td>Text</Td>
                 <Td isNumeric>30.48</Td>
                 <Td>
-                  <Tag colorScheme="red">GAGAL</Tag>
+                  <Tag colorScheme="red" size="sm">
+                    GAGAL
+                  </Tag>
                 </Td>
                 <Td>
                   <ActionMenu />
@@ -115,7 +136,9 @@ function ExampleListPage() {
                 <Td>Text</Td>
                 <Td isNumeric>0.91444</Td>
                 <Td>
-                  <Tag colorScheme="yellow">WARNING</Tag>
+                  <Tag colorScheme="yellow" size="sm">
+                    WARNING
+                  </Tag>
                 </Td>
                 <Td>
                   <ActionMenu />
@@ -124,6 +147,82 @@ function ExampleListPage() {
             </Tbody>
           </Table>
         </Box>
+        <Flex alignItems="center">
+          <Flex alignItems="center" flex="1">
+            <Text flexShrink="0" mr={8} color="gray.600">
+              Ditampilkan{' '}
+              <Text fontWeight="bold" as="span">
+                10
+              </Text>{' '}
+              dari{' '}
+              <Text fontWeight="bold" as="span">
+                0
+              </Text>
+            </Text>
+          </Flex>
+          <Flex alignItems="center" mr={2}>
+            <Text flexShrink="0">Show:</Text>{' '}
+            <Select ml={2} w={24} value={10} onChange={() => {}}>
+              {[10, 20, 30, 40, 50].map((pageSize) => (
+                <option key={pageSize} value={pageSize}>
+                  {pageSize}
+                </option>
+              ))}
+            </Select>
+          </Flex>
+          <Flex alignItems="center" mr={2}>
+            <Text flexShrink="0">Go to page:</Text>{' '}
+            <NumberInput
+              ml={2}
+              mr={8}
+              w={24}
+              min={1}
+              max={10}
+              onChange={() => {}}
+              defaultValue={1}
+            >
+              <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+          </Flex>
+          <Flex mr={2}>
+            <Tooltip label="First Page">
+              <IconButton
+                onClick={() => {}}
+                isDisabled={() => {}}
+                icon={<FiChevronsLeft h={3} w={3} />}
+                mr={4}
+              />
+            </Tooltip>
+            <Tooltip label="Previous Page">
+              <IconButton
+                onClick={() => {}}
+                isDisabled={false}
+                icon={<FiChevronLeft h={6} w={6} />}
+              />
+            </Tooltip>
+          </Flex>
+          <Flex>
+            <Tooltip label="Next Page">
+              <IconButton
+                onClick={() => {}}
+                isDisabled={false}
+                icon={<FiChevronRight h={6} w={6} />}
+              />
+            </Tooltip>
+            <Tooltip label="Last Page">
+              <IconButton
+                onClick={() => {}}
+                isDisabled={false}
+                icon={<FiChevronsRight h={3} w={3} />}
+                ml={4}
+              />
+            </Tooltip>
+          </Flex>
+        </Flex>
       </Box>
     </div>
   );

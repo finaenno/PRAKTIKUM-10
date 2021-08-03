@@ -59,7 +59,7 @@ export default function Footer() {
               <Link href={'#'}>Lowongan Kerja dan Karir</Link>
             </Stack>
             <Stack spacing={1}>
-              <Box>
+              <Box mb={2}>
                 <Image
                   htmlWidth="139px"
                   htmlHeight="58px"
