@@ -16,6 +16,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "storybook-addon-performance": "^0.16.0",
+    "use-react-router-breadcrumbs": "^2.0.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
