@@ -18,13 +18,14 @@ import {
 import React, { useEffect, useState } from 'react';
 import { FiSearch, FiPrinter, FiPlus, FiFilter } from 'react-icons/fi';
 import useFetch, { CachePolicies } from 'use-http';
+import queryString from 'query-string';
 import Pagination from '../../../components/Pagination/Index';
 import { ExampleListItem } from '../components/ExampleListItem';
 import { useQueryParams } from '../../../hooks/useQueryParams';
 import BreadcrumbSection from '../../../components/BreadcrumbSection/index';
 
 function ExampleListPage() {
-  const { query, push } = useQueryParams({ page: 1, perPage: 5, keywords: '' });
+  const { query, push } = useQueryParams({ page: 1, limit: 5, keywords: '' });
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const { response, get, loading } = useFetch('/api/examples', {
@@ -43,17 +44,17 @@ function ExampleListPage() {
   ];
 
   useEffect(() => {
+    console.log('called', query);
     const callFetch = async () => {
-      await get(
-        `?limit=${query.perPage}&offset=${(query.page - 1) * query.perPage}`
-      );
+      await get(`?${queryString.stringify(query)}`);
       if (response.ok) {
         setData(response.data?.data || []);
         setTotal(response.data?.meta?.total || 0);
       }
     };
     callFetch();
-  }, [get, query, response]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query.limit, query.page, query.keywords]);
 
   const changeQuery = (newQuery) => {
     push({ ...query, ...newQuery });
@@ -99,7 +100,7 @@ function ExampleListPage() {
             <Button leftIcon={<FiPrinter />} variant="outline">
               Print
             </Button>
-            <Button leftIcon={<FiPlus />} variant="outline">
+            <Button leftIcon={<FiPlus />} variant="solid" colorScheme="blue">
               Add
             </Button>
           </HStack>
@@ -116,19 +117,13 @@ function ExampleListPage() {
               </Thead>
               <Tbody>
                 {loading
-                  ? Array.from({ length: query.perPage }, (_, i) => (
+                  ? Array.from({ length: query.limit }, (_, i) => (
                       <Tr key={`loader-${i}`}>
                         <Td>
-                          <Skeleton
-                            borderRadius="md"
-                            height="32px"
-                            width="200px"
-                            my="4px"
-                          />
+                          <Skeleton height="32px" width="200px" my="4px" />
                         </Td>
                         <Td>
                           <Skeleton
-                            borderRadius="md"
                             height="32px"
                             width="50px"
                             my="4px"
@@ -136,23 +131,13 @@ function ExampleListPage() {
                           />
                         </Td>
                         <Td>
-                          <Skeleton
-                            borderRadius="md"
-                            height="32px"
-                            width="50px"
-                            my="4px"
-                          />
+                          <Skeleton height="32px" width="50px" my="4px" />
                         </Td>
                         <Td>
-                          <Skeleton
-                            borderRadius="md"
-                            height="32px"
-                            width="300px"
-                            my="4px"
-                          />
+                          <Skeleton height="32px" width="300px" my="4px" />
                         </Td>
                         <Td>
-                          <Skeleton borderRadius="md" height="32px" my="4px" />
+                          <Skeleton height="32px" my="4px" />
                         </Td>
                       </Tr>
                     ))
@@ -172,7 +157,7 @@ function ExampleListPage() {
           <Pagination
             page={query.page}
             changeQuery={changeQuery}
-            perPage={query.perPage}
+            limit={query.limit}
             total={total}
           />
         </Box>

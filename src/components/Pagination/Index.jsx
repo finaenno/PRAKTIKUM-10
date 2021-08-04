@@ -18,8 +18,8 @@ import {
 } from 'react-icons/fi';
 import PropTypes from 'prop-types';
 
-export const Pagination = ({ page, changeQuery, perPage, total }) => {
-  const lastPage = Math.floor(total / perPage);
+export const Pagination = ({ page, changeQuery, limit, total }) => {
+  const lastPage = Math.floor(total / limit);
   return (
     <Flex alignItems="center">
       <Flex alignItems="center" flex="1">
@@ -39,8 +39,8 @@ export const Pagination = ({ page, changeQuery, perPage, total }) => {
         <Select
           ml={2}
           w={24}
-          value={perPage}
-          onChange={(e) => changeQuery({ perPage: Number(e.target.value) })}
+          value={limit}
+          onChange={(e) => changeQuery({ limit: Number(e.target.value) })}
         >
           {[5, 10, 20, 30, 40, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
@@ -58,7 +58,7 @@ export const Pagination = ({ page, changeQuery, perPage, total }) => {
           min={1}
           max={lastPage}
           onChange={(value) => {
-            changeQuery({ perPage: Number(value) });
+            changeQuery({ limit: Number(value) });
           }}
           defaultValue={page}
           value={page}
@@ -110,7 +110,7 @@ export const Pagination = ({ page, changeQuery, perPage, total }) => {
 
 Pagination.propTypes = {
   page: PropTypes.number,
-  perPage: PropTypes.number,
+  limit: PropTypes.number,
   changeQuery: PropTypes.func,
   total: PropTypes.number,
 };

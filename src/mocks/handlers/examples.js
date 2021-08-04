@@ -5,7 +5,7 @@ export const examples = [
   rest.get('/api/examples', (req, res, ctx) => {
     const total = 1000;
     const limit = req.url.searchParams.get('limit');
-    const offset = req.url.searchParams.get('offset');
+    const page = req.url.searchParams.get('page');
 
     return res(
       ctx.delay(1000),
@@ -19,7 +19,7 @@ export const examples = [
         })),
         meta: {
           limit,
-          offset,
+          page,
           total,
         },
       })

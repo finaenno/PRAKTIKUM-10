@@ -13,7 +13,7 @@ export default function BreadcrumbSection({ data }) {
     <Breadcrumb m="8" separator={<FiChevronRight />} fontSize="sm">
       {data.map(({ name, url, isLoading }, index) => {
         return (
-          <BreadcrumbItem key={url} isCurrentPage={!url}>
+          <BreadcrumbItem key={`${index}-${name}`} isCurrentPage={!url}>
             {isLoading ? (
               <Skeleton width="100px" height="10px" />
             ) : !url ? (
