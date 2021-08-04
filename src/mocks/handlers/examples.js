@@ -8,6 +8,7 @@ export const examples = [
     const offset = req.url.searchParams.get('offset');
 
     return res(
+      ctx.delay(1000),
       ctx.json({
         data: Array.from({ length: limit }, () => ({
           id: faker.datatype.uuid(),

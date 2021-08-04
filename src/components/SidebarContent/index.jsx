@@ -38,9 +38,8 @@ const SidebarContent = (props) => {
             to={link.path || '/'}
             exact={link.exact}
             isIcon={!isOpen}
-          >
-            {link.name}
-          </NavItem>
+            name={link.name}
+          />
         ))}
       </Stack>
       <Box flex="1" />
