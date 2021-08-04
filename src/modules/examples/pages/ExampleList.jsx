@@ -17,7 +17,7 @@ import {
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { FiSearch, FiPrinter, FiPlus, FiFilter } from 'react-icons/fi';
-import useFetch from 'use-http';
+import useFetch, { CachePolicies } from 'use-http';
 import Pagination from '../../../components/Pagination/Index';
 import { ExampleListItem } from '../components/ExampleListItem';
 import { useQueryParams } from '../../../hooks/useQueryParams';
@@ -32,7 +32,11 @@ function ExampleListPage() {
   useEffect(() => {
     const callFetch = async () => {
       await get(
-        `?limit=${query.perPage}&offset=${(query.page - 1) * query.perPage}`
+        `?limit=${query.perPage}&offset=${(query.page - 1) * query.perPage}`,
+        {
+          cachePolicy: CachePolicies.NO_CACHE,
+          loading: true,
+        }
       );
       if (response.ok) {
         setData(response.data?.data || []);
