@@ -20,11 +20,10 @@ import { FiSearch, FiPrinter, FiPlus, FiFilter } from 'react-icons/fi';
 import useFetch from 'use-http';
 import Pagination from '../../../components/Pagination/Index';
 import { ExampleListItem } from '../components/ExampleListItem';
-import { Link } from 'react-router-dom';
+import { useQueryParams } from '../../../hooks/useQueryParams';
 
 function ExampleListPage() {
-  const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(5);
+  const { query, push } = useQueryParams({ page: 1, perPage: 5, keywords: '' });
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
 
@@ -32,14 +31,26 @@ function ExampleListPage() {
 
   useEffect(() => {
     const callFetch = async () => {
-      await get(`?limit=${perPage}&offset=${(page - 1) * perPage}`);
+      await get(
+        `?limit=${query.perPage}&offset=${(query.page - 1) * query.perPage}`
+      );
       if (response.ok) {
         setData(response.data?.data || []);
         setTotal(response.data?.meta?.total || 0);
       }
     };
     callFetch();
-  }, [get, page, perPage, response]);
+  }, [get, query, response]);
+
+  const changeQuery = (newQuery) => {
+    push({ ...query, ...newQuery });
+  };
+
+  const onSearch = (e) => {
+    if (e.key === 'Enter') {
+      changeQuery({ keywords: e.target.value });
+    }
+  };
 
   return (
     <div>
@@ -60,7 +71,11 @@ function ExampleListPage() {
               pointerEvents="none"
               children={<FiSearch color="gray.300" />}
             />
-            <Input type="tel" placeholder="Find" />
+            <Input
+              type="tel"
+              placeholder="Find"
+              onKeyDown={(e) => onSearch(e)}
+            />
           </InputGroup>
           <Spacer />
           <Button leftIcon={<FiFilter />} variant="outline">
@@ -69,12 +84,7 @@ function ExampleListPage() {
           <Button leftIcon={<FiPrinter />} variant="outline">
             Print
           </Button>
-          <Button
-            leftIcon={<FiPlus />}
-            variant="outline"
-            as={Link}
-            to="/example/new"
-          >
+          <Button leftIcon={<FiPlus />} variant="outline">
             Add
           </Button>
         </HStack>
@@ -91,7 +101,7 @@ function ExampleListPage() {
             </Thead>
             <Tbody>
               {loading
-                ? Array.from({ length: perPage }, (_, i) => (
+                ? Array.from({ length: query.perPage }, (_, i) => (
                     <Tr key={`loader-${i}`}>
                       <Td>
                         <Skeleton
@@ -145,10 +155,9 @@ function ExampleListPage() {
           </Table>
         </Box>
         <Pagination
-          page={page}
-          setPage={setPage}
-          perPage={perPage}
-          setPerPage={setPerPage}
+          page={query.page}
+          changeQuery={changeQuery}
+          perPage={query.perPage}
           total={total}
         />
       </Box>

@@ -4,7 +4,13 @@ import { Box, Heading, Button, Text } from '@chakra-ui/react';
 import { FiRefreshCcw } from 'react-icons/fi';
 
 const FallbackSuspense = () => {
-  return <Box>Failed to load</Box>;
+  return (
+    <Box role="alert">
+      <Heading as="h2" size="lg" mb="4">
+        Loading...
+      </Heading>
+    </Box>
+  );
 };
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => {

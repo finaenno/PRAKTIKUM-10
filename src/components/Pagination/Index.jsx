@@ -18,7 +18,7 @@ import {
 } from 'react-icons/fi';
 import PropTypes from 'prop-types';
 
-export const Pagination = ({ page, setPage, perPage, setPerPage, total }) => {
+export const Pagination = ({ page, changeQuery, perPage, total }) => {
   const lastPage = Math.floor(total / perPage);
   return (
     <Flex alignItems="center">
@@ -35,12 +35,12 @@ export const Pagination = ({ page, setPage, perPage, setPerPage, total }) => {
         </Text>
       </Flex>
       <Flex alignItems="center" mr={2}>
-        <Text flexShrink="0">Show:</Text>{' '}
+        <Text flexShrink="0">Tampilkan:</Text>{' '}
         <Select
           ml={2}
           w={24}
           value={perPage}
-          onChange={(e) => setPerPage(Number(e.target.value))}
+          onChange={(e) => changeQuery({ perPage: Number(e.target.value) })}
         >
           {[5, 10, 20, 30, 40, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
@@ -50,7 +50,7 @@ export const Pagination = ({ page, setPage, perPage, setPerPage, total }) => {
         </Select>
       </Flex>
       <Flex alignItems="center" mr={2}>
-        <Text flexShrink="0">Go to page:</Text>{' '}
+        <Text flexShrink="0">Ke halaman:</Text>{' '}
         <NumberInput
           ml={2}
           mr={8}
@@ -58,7 +58,7 @@ export const Pagination = ({ page, setPage, perPage, setPerPage, total }) => {
           min={1}
           max={lastPage}
           onChange={(value) => {
-            setPage(Number(value));
+            changeQuery({ perPage: Number(value) });
           }}
           defaultValue={page}
           value={page}
@@ -71,33 +71,33 @@ export const Pagination = ({ page, setPage, perPage, setPerPage, total }) => {
         </NumberInput>
       </Flex>
       <Flex mr={2}>
-        <Tooltip label="First Page">
+        <Tooltip label="Halaman Pertama">
           <IconButton
-            onClick={() => setPage(1)}
+            onClick={() => changeQuery({ page: 1 })}
             isDisabled={page === 1}
             icon={<FiChevronsLeft h={3} w={3} />}
             mr={4}
           />
         </Tooltip>
-        <Tooltip label="Previous Page">
+        <Tooltip label="Halaman Sebelumnya">
           <IconButton
-            onClick={() => setPage(page - 1)}
+            onClick={() => changeQuery({ page: page - 1 })}
             isDisabled={page === 1}
             icon={<FiChevronLeft h={6} w={6} />}
           />
         </Tooltip>
       </Flex>
       <Flex>
-        <Tooltip label="Next Page">
+        <Tooltip label="Halaman Selanjutnya">
           <IconButton
-            onClick={() => setPage(page + 1)}
+            onClick={() => changeQuery({ page: page + 1 })}
             isDisabled={page === lastPage}
             icon={<FiChevronRight h={6} w={6} />}
           />
         </Tooltip>
-        <Tooltip label="Last Page">
+        <Tooltip label="Halaman Terakhir">
           <IconButton
-            onClick={() => setPage(lastPage)}
+            onClick={() => changeQuery({ page: lastPage })}
             isDisabled={page === lastPage}
             icon={<FiChevronsRight h={3} w={3} />}
             ml={4}
@@ -110,9 +110,8 @@ export const Pagination = ({ page, setPage, perPage, setPerPage, total }) => {
 
 Pagination.propTypes = {
   page: PropTypes.number,
-  setPage: PropTypes.func,
   perPage: PropTypes.number,
-  setPerPage: PropTypes.func,
+  changeQuery: PropTypes.func,
   total: PropTypes.number,
 };
 
