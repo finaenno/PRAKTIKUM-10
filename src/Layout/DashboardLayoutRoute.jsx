@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import PropTypes from 'prop-types';
 import SidebarContent from '../components/SidebarContent';
-import BreadcrumbSection from '../components/BreadcrumbSection';
 import { SidebarProvider, useSidebar } from '../context/SidebarContext';
 import { withSuspense } from '../utils/withSuspense';
 
@@ -23,8 +22,7 @@ const MainContent = ({ children }) => {
       h="100vh"
     >
       <Navbar></Navbar>
-      <BreadcrumbSection />
-      <Box m="8">{children}</Box>
+      <Box>{children}</Box>
     </Box>
   );
 };

@@ -4,25 +4,20 @@ import {
   BreadcrumbLink,
   Text,
 } from '@chakra-ui/react';
-import useBreadcrumbs from 'use-react-router-breadcrumbs';
-import { ProtectedRoutes } from '../../routes';
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
-export default function BreadcrumbSection() {
-  const breadcrumbs = useBreadcrumbs(ProtectedRoutes);
-  if (breadcrumbs.length === 1) return <></>;
+export default function BreadcrumbSection({ data }) {
   return (
     <Breadcrumb m="8" separator={<FiChevronRight />} fontSize="sm">
-      {breadcrumbs.map(({ breadcrumb, match }, index) => {
-        const isCurrent = index === breadcrumbs.length - 1;
+      {data.map(({ name, url }, index) => {
         return (
-          <BreadcrumbItem key={match.url} isCurrentPage={isCurrent}>
-            {isCurrent ? (
-              <Text color="gray.400">{breadcrumb}</Text>
+          <BreadcrumbItem key={url} isCurrentPage={!url}>
+            {!url ? (
+              <Text color="gray.400">{name}</Text>
             ) : (
-              <BreadcrumbLink as={Link} to={match.url} color="blue.600">
-                {breadcrumb}
+              <BreadcrumbLink as={Link} to={url} color="blue.600">
+                {name}
               </BreadcrumbLink>
             )}
           </BreadcrumbItem>

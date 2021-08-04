@@ -5,7 +5,7 @@ import { FiRefreshCcw } from 'react-icons/fi';
 
 const FallbackSuspense = () => {
   return (
-    <Box role="alert">
+    <Box role="alert" m="8">
       <Heading as="h2" size="lg" mb="4">
         Loading...
       </Heading>
@@ -15,7 +15,7 @@ const FallbackSuspense = () => {
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
   return (
-    <Box role="alert">
+    <Box role="alert" m="8">
       <Heading as="h2" size="lg" mb="4">
         Something went wrong:
       </Heading>

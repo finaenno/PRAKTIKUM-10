@@ -1,9 +1,9 @@
 import React from 'react';
-import { Heading, GridItem, Grid, Text } from '@chakra-ui/react';
+import { Heading, GridItem, Grid, Text, Box } from '@chakra-ui/react';
 
 function Dashboard() {
   return (
-    <div>
+    <Box m="8">
       <Heading as="h2" size="lg" mb="4" mt="8" color="gray.800">
         Hello{' '}
         <Text color="blue.600" as={'span'}>
@@ -73,7 +73,7 @@ function Dashboard() {
           height="160px"
         />
       </Grid>
-    </div>
+    </Box>
   );
 }
 

@@ -24,4 +24,17 @@ export const examples = [
       })
     );
   }),
+  rest.get('/api/examples/:id', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        data: {
+          id: faker.datatype.uuid(),
+          nama: faker.name.findName(),
+          nilai: faker.datatype.number(100),
+          tanggal: faker.date.past(),
+          status: faker.helpers.randomize(['sukses', 'warning', 'gagal']),
+        },
+      })
+    );
+  }),
 ];
