@@ -26,6 +26,7 @@ export const examples = [
   }),
   rest.get('/api/examples/:id', (req, res, ctx) => {
     return res(
+      ctx.delay(2000),
       ctx.json({
         data: {
           id: faker.datatype.uuid(),

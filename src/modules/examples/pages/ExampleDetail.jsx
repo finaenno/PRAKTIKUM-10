@@ -1,4 +1,4 @@
-import { Heading, Box, Text } from '@chakra-ui/react';
+import { Heading, Box, Text, Skeleton } from '@chakra-ui/react';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import BreadcrumbSection from '../../../components/BreadcrumbSection/index';
@@ -34,10 +34,12 @@ function ExampleDetailPage() {
 
   return (
     <>
-      <BreadcrumbSection data={[...breadcrumbData, { name: data?.nama }]} />
+      <BreadcrumbSection
+        data={[...breadcrumbData, { name: data?.nama, isLoading: loading }]}
+      />
       <Box m="8">
         <Heading as="h2" size="lg" mb="4">
-          {data?.nama}
+          {loading ? <Skeleton height="36px" width="200px" /> : data?.nama}
         </Heading>
         <Box
           colSpan={1}
