@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Box, Heading, Button, Text } from '@chakra-ui/react';
-import { FiRefreshCcw } from 'react-icons/fi';
+import { FaSyncAlt } from 'react-icons/fa';
 
 const FallbackSuspense = () => {
   return (
@@ -25,7 +25,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
       <Text as="p" mb="4">
         Please contact administrator
       </Text>
-      <Button leftIcon={<FiRefreshCcw />} onClick={resetErrorBoundary}>
+      <Button leftIcon={<FaSyncAlt />} onClick={resetErrorBoundary}>
         Try again
       </Button>
     </Box>

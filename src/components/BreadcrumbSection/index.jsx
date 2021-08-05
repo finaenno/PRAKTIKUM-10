@@ -5,12 +5,12 @@ import {
   Text,
   Skeleton,
 } from '@chakra-ui/react';
-import { FiChevronRight } from 'react-icons/fi';
+import { FaAngleRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 export default function BreadcrumbSection({ data }) {
   return (
-    <Breadcrumb m="8" separator={<FiChevronRight />} fontSize="sm">
+    <Breadcrumb m="8" separator={<FaAngleRight />} fontSize="sm">
       {data.map(({ name, url, isLoading }, index) => {
         return (
           <BreadcrumbItem key={`${index}-${name}`} isCurrentPage={!url}>

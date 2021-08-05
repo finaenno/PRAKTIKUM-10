@@ -9,7 +9,12 @@ import {
   DarkMode,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { FiSearch, FiInfo, FiBell, FiChevronLeft } from 'react-icons/fi';
+import {
+  FaQuestionCircle,
+  FaBell,
+  FaSearch,
+  FaChevronLeft,
+} from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import UserInfo from '../UserInfo';
 import { useSidebar } from '../../context/SidebarContext';
@@ -33,7 +38,7 @@ export const Navbar = () => {
           onClick={onToggle}
           variant="outline"
           aria-label="open menu"
-          icon={<FiChevronLeft size="24px" />}
+          icon={<FaChevronLeft />}
           transition="0.3 ease"
           transform={isOpen ? '' : 'rotate(180deg)'}
         />
@@ -46,7 +51,7 @@ export const Navbar = () => {
           }}
         >
           <InputGroup>
-            <InputLeftElement pointerEvents="none" children={<FiSearch />} />
+            <InputLeftElement pointerEvents="none" children={<FaSearch />} />
             <Input
               type="text"
               placeholder="Cari disini"
@@ -56,10 +61,10 @@ export const Navbar = () => {
           </InputGroup>
         </MotionBox>
         <Box mr="2">
-          <IconButton icon={<FiInfo size="24px" />} variant="ghost" />
+          <IconButton icon={<FaQuestionCircle size="20px" />} variant="ghost" />
         </Box>
         <Box mr="2">
-          <IconButton icon={<FiBell size="24px" />} variant="ghost" />
+          <IconButton icon={<FaBell size="20px" />} variant="ghost" />
         </Box>
         <Box>
           <UserInfo

@@ -6,12 +6,12 @@ import {
   MenuButton,
 } from '@chakra-ui/react';
 import {
-  FiCopy,
-  FiEdit,
-  FiMoreVertical,
-  FiPower,
-  FiTrash,
-} from 'react-icons/fi';
+  FaCopy,
+  FaEdit,
+  FaEllipsisV,
+  FaPowerOff,
+  FaTrash,
+} from 'react-icons/fa';
 
 export const ExampleActionMenu = () => {
   return (
@@ -19,14 +19,14 @@ export const ExampleActionMenu = () => {
       <MenuButton
         as={IconButton}
         aria-label="Options"
-        icon={<FiMoreVertical />}
+        icon={<FaEllipsisV />}
         variant="outline"
       />
       <MenuList>
-        <MenuItem icon={<FiPower />}>Activate</MenuItem>
-        <MenuItem icon={<FiCopy />}>Duplicat</MenuItem>
-        <MenuItem icon={<FiEdit />}>Ganti Nama</MenuItem>
-        <MenuItem icon={<FiTrash />}>Hapus</MenuItem>
+        <MenuItem icon={<FaPowerOff />}>Activate</MenuItem>
+        <MenuItem icon={<FaCopy />}>Duplicat</MenuItem>
+        <MenuItem icon={<FaEdit />}>Ganti Nama</MenuItem>
+        <MenuItem icon={<FaTrash />}>Hapus</MenuItem>
       </MenuList>
     </Menu>
   );

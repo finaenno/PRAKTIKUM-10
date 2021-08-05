@@ -10,7 +10,7 @@ import {
   MenuItem,
 } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
-import { FiChevronDown } from 'react-icons/fi';
+import { FaAngleDown } from 'react-icons/fa';
 
 export const UserInfo = ({ avatarUrl, name, role }) => {
   const onSignout = () => {
@@ -34,7 +34,7 @@ export const UserInfo = ({ avatarUrl, name, role }) => {
             </Text>
           </VStack>
           <Box display="flex">
-            <FiChevronDown />
+            <FaAngleDown />
           </Box>
         </HStack>
       </MenuButton>

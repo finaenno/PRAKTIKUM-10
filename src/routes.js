@@ -1,10 +1,10 @@
 import { lazy } from 'react';
-import { FiHome, FiStar } from 'react-icons/fi';
+import { FaHome, FaStar } from 'react-icons/fa';
 
 export const ProtectedRoutes = [
   {
     name: 'Home',
-    icon: FiHome,
+    icon: FaHome,
     path: '/',
     component: lazy(() => import('./pages/Home')),
     isShowNav: true,
@@ -13,7 +13,7 @@ export const ProtectedRoutes = [
   // Examples
   {
     name: 'Example',
-    icon: FiStar,
+    icon: FaStar,
     path: '/example',
     component: lazy(() => import('./modules/examples/ExampleContainer')),
     isShowNav: true,

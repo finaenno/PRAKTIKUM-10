@@ -11,11 +11,11 @@ import {
   IconButton,
 } from '@chakra-ui/react';
 import {
-  FiChevronsLeft,
-  FiChevronLeft,
-  FiChevronsRight,
-  FiChevronRight,
-} from 'react-icons/fi';
+  FaAngleDoubleLeft,
+  FaAngleDoubleRight,
+  FaAngleRight,
+  FaAngleLeft,
+} from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
 export const Pagination = ({ page, changeQuery, limit, total }) => {
@@ -75,7 +75,7 @@ export const Pagination = ({ page, changeQuery, limit, total }) => {
           <IconButton
             onClick={() => changeQuery({ page: 1 })}
             isDisabled={page === 1}
-            icon={<FiChevronsLeft h={3} w={3} />}
+            icon={<FaAngleDoubleLeft h={3} w={3} />}
             mr={4}
           />
         </Tooltip>
@@ -83,7 +83,7 @@ export const Pagination = ({ page, changeQuery, limit, total }) => {
           <IconButton
             onClick={() => changeQuery({ page: page - 1 })}
             isDisabled={page === 1}
-            icon={<FiChevronLeft h={6} w={6} />}
+            icon={<FaAngleLeft h={6} w={6} />}
           />
         </Tooltip>
       </Flex>
@@ -92,14 +92,14 @@ export const Pagination = ({ page, changeQuery, limit, total }) => {
           <IconButton
             onClick={() => changeQuery({ page: page + 1 })}
             isDisabled={page === lastPage}
-            icon={<FiChevronRight h={6} w={6} />}
+            icon={<FaAngleRight h={6} w={6} />}
           />
         </Tooltip>
         <Tooltip label="Halaman Terakhir">
           <IconButton
             onClick={() => changeQuery({ page: lastPage })}
             isDisabled={page === lastPage}
-            icon={<FiChevronsRight h={3} w={3} />}
+            icon={<FaAngleDoubleRight h={3} w={3} />}
             ml={4}
           />
         </Tooltip>

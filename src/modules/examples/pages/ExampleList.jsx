@@ -18,7 +18,7 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect } from 'react';
-import { FiSearch, FiPrinter, FiPlus, FiFilter } from 'react-icons/fi';
+import { FaSearch, FaPrint, FaPlus, FaFilter } from 'react-icons/fa';
 import queryString from 'query-string';
 import Pagination from '../../../components/Pagination/Index';
 import { ExampleListItem } from '../components/ExampleListItem';
@@ -83,7 +83,7 @@ function ExampleListPage() {
             <InputGroup w="sm">
               <InputLeftElement
                 pointerEvents="none"
-                children={<FiSearch color="gray.300" />}
+                children={<FaSearch color="gray.300" />}
               />
               <Input
                 type="tel"
@@ -92,13 +92,13 @@ function ExampleListPage() {
               />
             </InputGroup>
             <Spacer />
-            <Button leftIcon={<FiFilter />} variant="outline">
+            <Button leftIcon={<FaFilter />} variant="outline">
               Filter
             </Button>
-            <Button leftIcon={<FiPrinter />} variant="outline">
+            <Button leftIcon={<FaPrint />} variant="outline">
               Print
             </Button>
-            <Button leftIcon={<FiPlus />} variant="solid" colorScheme="blue">
+            <Button leftIcon={<FaPlus />} variant="solid" colorScheme="blue">
               Add
             </Button>
           </HStack>
