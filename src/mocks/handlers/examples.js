@@ -6,9 +6,8 @@ export const examples = [
     const total = 1000;
     const limit = req.url.searchParams.get('limit');
     const page = req.url.searchParams.get('page');
-
     return res(
-      ctx.delay(1000),
+      ctx.delay(500),
       ctx.json({
         data: Array.from({ length: limit }, () => ({
           id: faker.datatype.uuid(),
@@ -27,7 +26,7 @@ export const examples = [
   }),
   rest.get('/api/examples/:id', (req, res, ctx) => {
     return res(
-      ctx.delay(2000),
+      ctx.delay(500),
       ctx.json({
         data: {
           id: faker.datatype.uuid(),

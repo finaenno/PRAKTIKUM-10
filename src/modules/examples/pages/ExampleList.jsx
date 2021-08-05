@@ -14,23 +14,25 @@ import {
   Th,
   Skeleton,
   Td,
+  Alert,
 } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import React, { useEffect } from 'react';
 import { FiSearch, FiPrinter, FiPlus, FiFilter } from 'react-icons/fi';
-import useFetch, { CachePolicies } from 'use-http';
 import queryString from 'query-string';
 import Pagination from '../../../components/Pagination/Index';
 import { ExampleListItem } from '../components/ExampleListItem';
 import { useQueryParams } from '../../../hooks/useQueryParams';
 import BreadcrumbSection from '../../../components/BreadcrumbSection/index';
+import useAsync from '../../../hooks/useAsync';
 
 function ExampleListPage() {
   const { query, push } = useQueryParams({ page: 1, limit: 5, keywords: '' });
-  const [data, setData] = useState([]);
-  const [total, setTotal] = useState(0);
-  const { response, get, loading } = useFetch('/api/examples', {
-    cachePolicy: CachePolicies.NO_CACHE,
-    loading: true,
+  const { isLoading, isError, isSuccess, data, run } = useAsync({
+    data: {
+      data: [],
+      meta: {},
+    },
   });
 
   const breadcrumbData = [
@@ -44,15 +46,11 @@ function ExampleListPage() {
   ];
 
   useEffect(() => {
-    console.log('called', query);
-    const callFetch = async () => {
-      await get(`?${queryString.stringify(query)}`);
-      if (response.ok) {
-        setData(response.data?.data || []);
-        setTotal(response.data?.meta?.total || 0);
-      }
-    };
-    callFetch();
+    run(
+      axios
+        .get(`/api/examples?${queryString.stringify(query)}`)
+        .then((res) => res.data)
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query.limit, query.page, query.keywords]);
 
@@ -104,6 +102,11 @@ function ExampleListPage() {
               Add
             </Button>
           </HStack>
+          {isError && (
+            <Alert my="4" borderRadius="md" status="error">
+              Terjadi kesalahan saat memuat data
+            </Alert>
+          )}
           <Box borderWidth="1px" borderRadius="lg" mb="4">
             <Table>
               <Thead>
@@ -116,50 +119,54 @@ function ExampleListPage() {
                 </Tr>
               </Thead>
               <Tbody>
-                {loading
-                  ? Array.from({ length: query.limit }, (_, i) => (
-                      <Tr key={`loader-${i}`}>
-                        <Td>
-                          <Skeleton height="32px" width="200px" my="4px" />
-                        </Td>
-                        <Td>
-                          <Skeleton
-                            height="32px"
-                            width="50px"
-                            my="4px"
-                            marginLeft="auto"
-                          />
-                        </Td>
-                        <Td>
-                          <Skeleton height="32px" width="50px" my="4px" />
-                        </Td>
-                        <Td>
-                          <Skeleton height="32px" width="300px" my="4px" />
-                        </Td>
-                        <Td>
-                          <Skeleton height="32px" my="4px" />
-                        </Td>
-                      </Tr>
-                    ))
-                  : data.map(({ id, nama, nilai, tanggal, status }) => (
-                      <ExampleListItem
-                        id={id}
-                        nama={nama}
-                        nilai={nilai}
-                        status={status}
-                        tanggal={tanggal}
-                        key={id}
-                      />
-                    ))}
+                {isLoading &&
+                  Array.from({ length: query.limit }, (_, i) => (
+                    <Tr key={`loader-${i}`} data-testid={`loader-${i}`}>
+                      <Td>
+                        <Skeleton height="32px" width="200px" my="4px" />
+                      </Td>
+                      <Td>
+                        <Skeleton
+                          height="32px"
+                          width="50px"
+                          my="4px"
+                          marginLeft="auto"
+                        />
+                      </Td>
+                      <Td>
+                        <Skeleton height="32px" width="50px" my="4px" />
+                      </Td>
+                      <Td>
+                        <Skeleton height="32px" width="300px" my="4px" />
+                      </Td>
+                      <Td>
+                        <Skeleton height="32px" my="4px" />
+                      </Td>
+                    </Tr>
+                  ))}
+                {isSuccess &&
+                  data.data.map(({ id, nama, nilai, tanggal, status }) => (
+                    <ExampleListItem
+                      data-testid={`list-item-${id}`}
+                      id={id}
+                      nama={nama}
+                      nilai={nilai}
+                      status={status}
+                      tanggal={tanggal}
+                      key={id}
+                    />
+                  ))}
               </Tbody>
             </Table>
           </Box>
-          <Pagination
-            page={query.page}
-            changeQuery={changeQuery}
-            limit={query.limit}
-            total={total}
-          />
+          {isSuccess && (
+            <Pagination
+              page={query.page}
+              changeQuery={changeQuery}
+              limit={query.limit}
+              total={data.meta.total}
+            />
+          )}
         </Box>
       </Box>
     </>

@@ -1,26 +1,17 @@
-import { Heading, Box, Text, Skeleton } from '@chakra-ui/react';
+import { Heading, Box, Text, Skeleton, Alert } from '@chakra-ui/react';
 import React from 'react';
+import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import BreadcrumbSection from '../../../components/BreadcrumbSection/index';
-import { useFetch, CachePolicies } from 'use-http';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import useAsync from '../../../hooks/useAsync';
 
 function ExampleDetailPage() {
   const { id } = useParams();
-  const [data, setData] = useState({});
-  const { response, get, loading } = useFetch('/api/examples', {
-    cachePolicy: CachePolicies.NO_CACHE,
-    loading: true,
-  });
+  const { isLoading, isError, isSuccess, data, run } = useAsync({});
   useEffect(() => {
-    const callFetch = async () => {
-      await get(`/${id}`);
-      if (response.ok) {
-        setData(response.data?.data || {});
-      }
-    };
-    callFetch();
-  }, [get, id, response]);
+    run(axios.get(`/api/examples/${id}`).then((res) => res.data.data));
+  }, [id, run]);
   const breadcrumbData = [
     {
       name: 'Home',
@@ -35,11 +26,11 @@ function ExampleDetailPage() {
   return (
     <>
       <BreadcrumbSection
-        data={[...breadcrumbData, { name: data?.nama, isLoading: loading }]}
+        data={[...breadcrumbData, { name: data?.nama, isLoading }]}
       />
       <Box m="8">
         <Heading as="h2" size="lg" mb="4">
-          {loading ? <Skeleton height="36px" width="200px" /> : data?.nama}
+          {isLoading ? <Skeleton height="36px" width="200px" /> : data?.nama}
         </Heading>
         <Box
           colSpan={1}
@@ -49,9 +40,13 @@ function ExampleDetailPage() {
           bg="white"
           p="8"
         >
-          {loading ? (
-            <Box>Loading</Box>
-          ) : (
+          {isLoading && <Box>Loading</Box>}
+          {isError && (
+            <Alert my="4" borderRadius="md" status="error">
+              Terjadi kesalahan saat memuat data
+            </Alert>
+          )}
+          {isSuccess && (
             <Box>
               <Box mb="4">
                 <Text fontSize="md" fontWeight="semibold" as="p">
