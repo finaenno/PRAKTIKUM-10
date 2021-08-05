@@ -1,4 +1,13 @@
-import { Heading, Box, Text, Skeleton, Alert } from '@chakra-ui/react';
+import {
+  Heading,
+  Box,
+  Text,
+  Skeleton,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from '@chakra-ui/react';
 import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -8,7 +17,7 @@ import useAsync from '../../../hooks/useAsync';
 
 function ExampleDetailPage() {
   const { id } = useParams();
-  const { isLoading, isError, isSuccess, data, run } = useAsync({});
+  const { isLoading, isError, isSuccess, error, data, run } = useAsync({});
   useEffect(() => {
     run(axios.get(`/api/examples/${id}`).then((res) => res.data.data));
   }, [id, run]);
@@ -43,7 +52,13 @@ function ExampleDetailPage() {
           {isLoading && <Box>Loading</Box>}
           {isError && (
             <Alert my="4" borderRadius="md" status="error">
-              Terjadi kesalahan saat memuat data
+              <AlertIcon />
+              <Box flex="1">
+                <AlertTitle>Terjadi kesalahan saat memuat data</AlertTitle>
+                <AlertDescription display="block">
+                  {error.message}
+                </AlertDescription>
+              </Box>
             </Alert>
           )}
           {isSuccess && (

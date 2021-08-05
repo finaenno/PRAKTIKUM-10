@@ -15,6 +15,9 @@ import {
   Skeleton,
   Td,
   Alert,
+  AlertTitle,
+  AlertDescription,
+  AlertIcon,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect } from 'react';
@@ -28,7 +31,7 @@ import useAsync from '../../../hooks/useAsync';
 
 function ExampleListPage() {
   const { query, push } = useQueryParams({ page: 1, limit: 5, keywords: '' });
-  const { isLoading, isError, isSuccess, data, run } = useAsync({
+  const { isLoading, isError, isSuccess, error, data, run } = useAsync({
     data: {
       data: [],
       meta: {},
@@ -104,7 +107,13 @@ function ExampleListPage() {
           </HStack>
           {isError && (
             <Alert my="4" borderRadius="md" status="error">
-              Terjadi kesalahan saat memuat data
+              <AlertIcon />
+              <Box flex="1">
+                <AlertTitle>Terjadi kesalahan saat memuat data</AlertTitle>
+                <AlertDescription display="block">
+                  {error.message}
+                </AlertDescription>
+              </Box>
             </Alert>
           )}
           <Box borderWidth="1px" borderRadius="lg" mb="4">
