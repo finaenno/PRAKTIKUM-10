@@ -1,6 +1,15 @@
 ### Module system
 
 Buat module baru copy dari `src/modules/examples`
+struktur folder dalam `src/modules/nama-module`
+```
+.
+├── components              # local components yang hanya digunakan di module
+├── context                 # local context yang hanya digunakan di module
+├── hooks                   # local hooks yang hanya digunakan di module
+├── pages                   # pages yang ada dalam module
+└── ModuleContainer.jsx     # bentuk container dari module, berisi config sub routes
+```
 
 Di contoh sudah ada fetch list, table, filter, pagination, navigate ke detail page.
 
