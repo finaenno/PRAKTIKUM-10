@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import UserInfo from './UserInfo';
+import UserInfo from './';
 
 test('Render UserInfo', () => {
   render(
