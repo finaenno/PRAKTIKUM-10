@@ -58,7 +58,7 @@ export const Pagination = ({ page, changeQuery, limit, total }) => {
           min={1}
           max={lastPage}
           onChange={(value) => {
-            changeQuery({ limit: Number(value) });
+            changeQuery({ page: Number(value) });
           }}
           defaultValue={page}
           value={page}
