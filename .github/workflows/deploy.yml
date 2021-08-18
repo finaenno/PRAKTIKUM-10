@@ -10,7 +10,6 @@ env:
   REGISTRY: registry.203.6.148.201.nip.io
   IMAGE_NAME: ${{ github.event.repository.name }}
 
-
 jobs:
   build:
 
@@ -46,7 +45,6 @@ jobs:
           tags: |
             ${{ steps.meta.outputs.tags }}                      
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-
 
       - name: Deploy webapp with latest
         uses: steebchen/kubectl@v2.0.0
