@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
+
+body {
+  background-color: white;
+  padding: 30px;
+}
+
+#heading {
+  font-family: 'Poppins';
+  font-size: 30px;
+  padding: 30px;
+  text-align: center;
+}
+
+#labelLevel,
+#labelJurusan,
+#labelNamaKelas {
+  width: 100px;
+  font-family: 'Poppins';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-left: 50px;
+  margin-top: 25px;
+  color: black;
+}
+#dropdownLevel,
+#dropdownJurusan,
+#dropdownLevel option,
+#dropdownJurusan option {
+  width: 250px;
+  height: 30px;
+  border: 3px solid black;
+  font-size: 14px;
+  margin-left: 70px;
+  font-family: 'Poppins';
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+/* #dropdownLevel{
+    width: 300px;
+    align-content: right;
+    margin-right: 1000px;
+} */
+
+#inputNamaKelas,
+#dropdownWaliKelas,
+#dropdownWaliKelas option {
+  width: 250px;
+  height: 30px;
+  border: 3px solid black;
+  font-size: 14px;
+  border-radius: 5px;
+  font-family: 'Poppins';
+  font-weight: bold;
+}
+
+#labelWaliKelas {
+  width: 100px;
+  font-family: 'Poppins';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: black;
+  margin-left: 15px;
+  margin-top: 17px;
+}
+
+#labelWaliKelasBaru {
+  width: 100px;
+  font-family: 'Poppins';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: black;
+  margin-top: 17px;
+  margin-left: 74px;
+}
+
+#deleteIcon {
+  color: #ca2424;
+  height: 25px;
+  width: 21.428571701049805px;
+  background-color: white;
+  margin-left: -900px;
+}
+
+#deleteIcon:hover {
+  background-color: white;
+}
+
+#buttonAddClass {
+  border-radius: 40px;
+  color: #005fee;
+  height: 46px;
+  min-width: 130px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600px;
+  font-family: 'Poppins';
+  line-height: 21px;
+  letter-spacing: 0em;
+  background-color: #ffffff;
+  border: 3px solid #005fee;
+  margin-left: 55px;
+  margin-top: 30px;
+}
+
+#buttonAddClass:hover {
+  border-color: #005fee;
+  background-color: #005fee;
+  color: white;
+}
+
+#buttonBatalkan {
+  width: 130px;
+  height: 46px;
+  border-radius: 40px;
+  background-color: #ffffff;
+  font-family: 'Poppins';
+  color: #005fee;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600px;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: center;
+  border: 3px solid #005fee;
+  margin-left: 1000px;
+  margin-top: 75px;
+  background-color: white;
+}
+
+#buttonBatalkan:hover {
+  background-color: #005fee;
+  color: #ffffff;
+  border: 3px solid #005fee;
+}
+
+#buttonOk {
+  width: 127px;
+  height: 46px;
+  border-radius: 40px;
+  /* background-color: #005FEE; */
+  font-family: 'Poppins';
+  color: #ffffff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600px;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-left: 15px;
+  margin-top: 73px;
+}
+
+#buttonOk:enabled {
+  background-color: #005fee;
+}
+
+#buttonOk:enabled:hover {
+  background-color: #fd6323;
+}
+
+#buttonOk:disabled {
+  background-color: #c1c1c1;
+}
+
+/* #buttonAcc:disabled{
+    background-color: grey;
+}
+
+#buttonAcc:enabled{
+    background-color: blue;
+} */

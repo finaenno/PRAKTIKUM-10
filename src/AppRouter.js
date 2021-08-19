@@ -6,6 +6,7 @@ import DashboardLayoutRoute from './Layout/DashboardLayoutRoute';
 import { ProtectedRoutes } from './routes';
 import Login from './pages/Login';
 import theme from './theme';
+import TambahKelas from './pages/TambahKelas';
 
 export default function AppRouter() {
   return (
@@ -28,6 +29,11 @@ export default function AppRouter() {
               <Route path="*">
                 <div>404: Page Not Found</div>
               </Route>
+              <DashboardLayoutRoute
+                exact
+                path="/tambahKelas"
+                component={TambahKelas}
+              />
             </Switch>
           </Route>
         </Switch>
